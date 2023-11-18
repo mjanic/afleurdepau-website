@@ -1,0 +1,20 @@
+button {
+    background-color: #F9AFA6;
+    width: 200px; 
+    border: none;
+    color: white;
+    padding: 15px 20px;
+    margin: 1em 0px;
+    letter-spacing: 2px;
+    font-size: 16px;
+    font-family: 'Assistant';
+    font-weight: bold;
+    border-radius: 40px;
+    transition: 0.4s ease;
+}
+button:hover {
+    border: 1px solid #CC7D7C;
+    color: #CC7D7C;
+    background-color: #FCF6EE;
+    cursor: pointer;
+}

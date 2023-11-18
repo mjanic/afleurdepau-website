@@ -1,0 +1,84 @@
+.img2 {
+    width: 150px;
+    height: 200px;
+    margin: 10px;
+    box-shadow: 0 5px 35px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+}
+.img3 {
+    width: 150px;
+    height: 200px;
+    margin: 10px;
+    box-shadow: 0 5px 35px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+}
+.main-img {
+    width: 400px;
+    height: 480px;
+    margin: 10px;
+    box-shadow: 0 5px 35px rgba(0, 0, 0, 0.15);
+}
+.product-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 60px;
+}
+.product-main-images {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.info {
+    text-align: center;
+}
+.product-main h1 {
+    font-size: xx-large;
+}
+.product-main h2 {
+    font-size: large;
+}
+.parfume-text {
+    text-align: center !important;
+}
+.product-main button {
+    margin: 10px;
+}
+.product-main p {
+    padding: 0 20px;
+    text-align: left;
+}
+.strong-button {
+    border: 1px solid #CC7D7C;
+    color: #CC7D7C;
+    background-color: #FCF6EE;
+}
+.mini-side-images {
+    display: none;
+}
+@media screen and (max-width: 1000px) {
+    .product-main {
+        margin: 10px 20px;
+    }
+    .img2, .img3 {
+        width: 100px;
+        height: 150px;
+    }
+    .main-img {
+        width: 300px;
+        height: 400px;
+    }
+    .product-main p {
+        font-size: small;
+    }
+}
+@media screen and (max-width: 750px) {
+    .product-main {
+        flex-direction: column;
+    }
+}
+@media screen and (max-width: 520px) {
+    .side-images {
+        display: none;
+    }
+}

@@ -1,0 +1,39 @@
+.product {
+    width: 350px;
+}
+.product-img {
+    height: 400px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.product-img button {
+    display: none;
+}
+.product-img:hover button {
+    display: block;
+}
+.product-info {
+    text-align: center;
+}
+.product-info h1, .product-info p, .product-info h2 {
+    margin: 5px 0;
+}
+.product-info h2 {
+    font-size: small;
+}
+.picture-to-click {
+    width: 400px;
+    height: 350px;
+}
+
+@media screen and (max-width: 840px) {
+    .product {
+        width: 250px;
+    }
+    .product-img, .picture-to-click {
+        height: 300px;
+        width: 250px;
+    }    
+}
