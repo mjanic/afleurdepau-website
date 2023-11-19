@@ -1,7 +1,12 @@
 import './Product.css';
 import {Link} from 'react-router-dom';
+import {
+    SignedIn,
+    SignedOut,
+    SignInButton
+  } from "@clerk/clerk-react";
 
-function Product({id, name, img1, price, parfume, addToCart}) {
+function Product({id, name, img1, price, parfume, addToCart, clerkPubKey}) {
     const mystyle = {
         backgroundImage: `url(${img1})`,
         backgroundSize: 'cover',
@@ -9,10 +14,18 @@ function Product({id, name, img1, price, parfume, addToCart}) {
     const handleAddToCart = () => {
         addToCart({id, img1, name, price, parfume, quantity:1});
     };
-    return(        
+    return(  
+          
         <div className='product'>
-            <div className='product-img' style={mystyle}>   
-                <button className='button' onClick={handleAddToCart}>AJOUTER AU PANIER</button>
+            <div className='product-img' style={mystyle}> 
+                <SignedIn> 
+                    <button className='button' onClick={handleAddToCart}>AJOUTER AU PANIER</button>
+                </SignedIn> 
+                <SignedOut> 
+                    <SignInButton>
+                        <button className='button'> AJOUTER AU PANIER </button>
+                    </SignInButton>
+                </SignedOut>
                 <Link key={id} to={`/products/${id}`} >
                     <div className='picture-to-click'></div>
                 </Link>
@@ -25,6 +38,7 @@ function Product({id, name, img1, price, parfume, addToCart}) {
                 </div>
             </Link>
         </div>
+        
     )
 }
 export default Product;

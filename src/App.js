@@ -4,7 +4,15 @@ import Shoppage from './Pages/Shoppage';
 import Productpage from './Pages/Productpage';
 import Cartpage from './Pages/Cartpage';
 import { useState, useEffect } from 'react';
-import products from './Components/products.json'
+import products from './Components/products.json';
+import { ClerkProvider } from "@clerk/clerk-react";
+import {neobrutalism} from "@clerk/themes";
+import { frFR } from '@clerk/localizations';
+
+if (!process.env.REACT_APP_CLERK_PUBLISHABLE_KEY) {
+    throw new Error("Missing Publishable Key")
+}
+const clerkPubKey = process.env.REACT_APP_CLERK_PUBLISHABLE_KEY;
 
 function App() {
     const [searchInput, setSearchInput] = useState('');
@@ -59,6 +67,13 @@ function App() {
 
 
     return(
+        <ClerkProvider 
+            publishableKey={clerkPubKey}
+            appearance={{
+                baseTheme: neobrutalism
+            }} 
+            localization={frFR}
+        >
         <Router>
             <Routes>
                 <Route path="/" element={
@@ -82,6 +97,7 @@ function App() {
                         filteredProducts={filteredProducts}
                         addToCart={addToCart}
                         cartArray={cartArray}
+                        clerkPubKey={clerkPubKey}
                     />} 
                 />
                 <Route path="/products/:productId" element={
@@ -109,6 +125,7 @@ function App() {
                     />} />
             </Routes>
         </Router>
+        </ClerkProvider>
     );
 }
 export default App;

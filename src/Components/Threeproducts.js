@@ -1,8 +1,7 @@
 import Product from './Product';
-import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 
-function Threeproducts({startIndex, products}) {
+function Threeproducts({startIndex, products, addToCart}) {
 
     useEffect(() => {
         window.scrollTo(0,0);
@@ -19,15 +18,17 @@ function Threeproducts({startIndex, products}) {
     return(
         <div className='product-grid'>
             {productsToDisplay.map((product) => (
-                <Link key={product.id} to={`/products/${product.id}`}>
+                
                     <Product
+                        id={product.id}
                         key={product.id} // Provide a unique key
                         name={product.name}
                         parfume={product.parfume}
                         price={product.price}
                         img1= {`../${product.img1}`}
+                        addToCart={addToCart}
                     />
-                </Link>
+                
       ))}
         </div>
     )

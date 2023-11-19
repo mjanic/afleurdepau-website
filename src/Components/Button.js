@@ -2,9 +2,9 @@ import './Button.css'
 
 function Button (){
     return(
-        <div className='button'>
-            <button >EXPLOREZ</button>
-        </div>
+        
+            <button className='button'>EXPLOREZ</button>
+        
     )
 }
 export default Button;

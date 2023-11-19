@@ -43,6 +43,11 @@
 }
 .product-main button {
     margin: 10px;
+    border-radius: 0;
+    width: 80%;
+}
+.product-main button:hover {
+    transform: scale(1.1);
 }
 .product-main p {
     padding: 0 20px;

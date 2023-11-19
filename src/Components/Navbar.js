@@ -8,6 +8,7 @@ import './Navbar.css';
 import { Link } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import Searchbar from './Searchbar';
+import { UserButton, SignedOut, SignInButton} from '@clerk/clerk-react';
 
 function Navbar({ searchInput, isSearchOpen, toggleSearch, cartArray, 
     handleSearchInput, filterSearch, clearSearchInput }) {
@@ -61,8 +62,14 @@ function Navbar({ searchInput, isSearchOpen, toggleSearch, cartArray,
                         </div>
                 </div>
                 <div className='nav-icons'>
-                    <FontAwesomeIcon className='nav-icon' icon={faUser} />
-                    <NavLink to="/cart" onClick={clearSearchInput}>
+                    <UserButton className='nav-icon'></UserButton>
+                    <SignedOut>
+                        <SignInButton>
+                            <FontAwesomeIcon className='nav-icon' icon={faUser} />   
+                        </SignInButton>
+                    </SignedOut> 
+                    
+                    <NavLink to="/cart" className='cart-link' onClick={clearSearchInput}>
                         <FontAwesomeIcon className='nav-icon' icon={faCartShopping} />
                         {cartItemCount > 0 && <span className="cart-count">({cartItemCount})</span>}
                     </NavLink>

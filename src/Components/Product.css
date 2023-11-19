@@ -24,8 +24,13 @@
     font-size: small;
 }
 .picture-to-click {
-    width: 400px;
-    height: 350px;
+    width: 350px;
+    height: 400px;
+}
+.product .button {
+    border-radius: 0;
+    width: 80%;
+    
 }
 
 @media screen and (max-width: 840px) {

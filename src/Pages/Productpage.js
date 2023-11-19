@@ -45,7 +45,11 @@ function Productpage({ searchInput, isSearchOpen, toggleSearch, addToCart, cartA
                 title="Voiyez plus comme ca" 
                 paragraph="Peut etre vous allez ca trouver interesant"
             />
-            <Threeproducts startIndex={parseInt(productId, 10)} products={products} />
+            <Threeproducts 
+            startIndex={parseInt(productId, 10)} 
+            products={products} 
+            addToCart={addToCart}
+            />
             <Footer/>
         </div>
     )

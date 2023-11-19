@@ -6,7 +6,7 @@ import Productgrid from "../Components/Productgrid";
 //import products from '../Components/products.json';
 import { useEffect} from "react";
 
-function Shoppage({ searchInput, isSearchOpen, toggleSearch, cartArray, 
+function Shoppage({ searchInput, isSearchOpen, toggleSearch, cartArray, clerkPubKey, 
     handleSearchInput, filteredProducts, clearSearchInput, addToCart }) {
 
     useEffect(() => {
@@ -33,6 +33,7 @@ function Shoppage({ searchInput, isSearchOpen, toggleSearch, cartArray,
             <Productgrid 
                 products={filteredProducts}
                 addToCart={addToCart}
+                clerkPubKey={clerkPubKey}
             />
             <Footer/>
         </div>
