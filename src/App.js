@@ -38,9 +38,13 @@ function App() {
     };
 
     useEffect(() => {
+        const searchWords = searchInput.toLowerCase().split(' ').filter(word => word.trim() !== '');
         const filtered = products.filter((product) =>
-                product.name.toLowerCase().includes(searchInput.toLowerCase()) | product.parfume.toLowerCase().includes(searchInput.toLowerCase())
-            );
+            searchWords.every(word =>
+                product.name.toLowerCase().includes(word) ||
+                product.parfume.toLowerCase().includes(word)
+        )
+    );
             setFilteredProducts(filtered);
             console.log(searchInput)
     }, [searchInput]);

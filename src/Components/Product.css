@@ -7,9 +7,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 }
 .product-img button {
     display: none;
+    position: absolute;
+    bottom: 80%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 .product-img:hover button {
     display: block;
@@ -30,7 +35,7 @@
 .product .button {
     border-radius: 0;
     width: 80%;
-    
+    position: top 20% left 50%;
 }
 
 @media screen and (max-width: 840px) {
