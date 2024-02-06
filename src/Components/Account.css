@@ -1,0 +1,20 @@
+.acc-links {
+    padding-left: 20px;
+}
+.acc-links p {
+    text-decoration: none;
+}
+#EditProfileForm {
+    padding-top: 0;
+}
+#EditProfileForm p {
+    color: gray;
+    text-decoration: none;
+    cursor: default;
+}
+#EditProfileForm button {
+    margin: 5px;
+}
+.pointer {
+    cursor: pointer;
+}

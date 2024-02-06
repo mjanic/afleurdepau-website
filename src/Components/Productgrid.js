@@ -1,7 +1,7 @@
 import './Productgrid.css';
 import Product from './Product';
 
-function Productgrid({products, addToCart, clerkPubKey}) {
+function Productgrid({products, addToCart, user, updateUser}) {
     const productsArray = products.map((product, i) => {
         return(
             
@@ -12,7 +12,8 @@ function Productgrid({products, addToCart, clerkPubKey}) {
                 price={products[i].price} 
                 img1={products[i].img1}
                 addToCart={addToCart}
-                clerkPubKey={clerkPubKey}
+                user={user}
+                updateUser={updateUser}
                 />
         )
     })

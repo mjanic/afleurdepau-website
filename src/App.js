@@ -1,20 +1,20 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Homepage from './Pages/Homepage';
 import Shoppage from './Pages/Shoppage';
 import Productpage from './Pages/Productpage';
-import Cartpage from './Pages/Cartpage';
+import Favorites from './Pages/Favorites';
 import { useState, useEffect } from 'react';
 import products from './Components/products.json';
-import { ClerkProvider } from "@clerk/clerk-react";
-import {neobrutalism} from "@clerk/themes";
-import { frFR } from '@clerk/localizations';
+import FAQpage from './Pages/FAQpage';
+import Aboutuspage from './Pages/Aboutuspage';
+import Historyachats from './Pages/Historyachats';
+import Passwordpage from './Pages/Passwordpage';
+import Activatedpage from './Pages/Activatedpage';
 
-if (!process.env.REACT_APP_CLERK_PUBLISHABLE_KEY) {
-    throw new Error("Missing Publishable Key")
-}
-const clerkPubKey = process.env.REACT_APP_CLERK_PUBLISHABLE_KEY;
+
 
 function App() {
+
     const [searchInput, setSearchInput] = useState('');
     const [isSearchOpen, setSearchOpen] = useState(false);
     const [filteredProducts, setFilteredProducts] = useState(products);
@@ -43,10 +43,9 @@ function App() {
             searchWords.every(word =>
                 product.name.toLowerCase().includes(word) ||
                 product.parfume.toLowerCase().includes(word)
-        )
-    );
-            setFilteredProducts(filtered);
-            console.log(searchInput)
+            )
+        );
+        setFilteredProducts(filtered);
     }, [searchInput]);
     
     const addToCart = (product) => {
@@ -68,16 +67,34 @@ function App() {
           prevCart.filter((item) => item.id !== productId)
         );
     };
+    
+    const logOutUser = () => {
+        setUser({name: "Guest", favorites: []});
+    }
 
+    const [isLogedIn, setLogedIn] = useState(false);
+    const handleLogIn = () => {
+        setLogedIn(!isLogedIn);
+    }
+
+    const[user, setUser] = useState({name: "Guest", favorites: []});
+    const updateUser = (newUser) => {
+        setUser(newUser);
+    };
+
+
+    useEffect(() => {
+        fetch('http://localhost:3001/check-session', {
+            method: 'get',
+            credentials: 'include'
+        })
+        .then(response => response.json())
+        .then(data => setUser(data))
+        .catch(err => console.log(err))
+        user.joined && setLogedIn(true);
+    }, [user]);
 
     return(
-        <ClerkProvider 
-            publishableKey={clerkPubKey}
-            appearance={{
-                baseTheme: neobrutalism
-            }} 
-            localization={frFR}
-        >
         <Router>
             <Routes>
                 <Route path="/" element={
@@ -89,6 +106,13 @@ function App() {
                         handleParfumeClick={handleParfumeClick}
                         clearSearchInput={clearSearchInput}
                         cartArray={cartArray}
+                        removeFromCart={removeFromCart}
+                        setCartArray={setCartArray}
+                        user={user}
+                        updateUser={updateUser}
+                        isLogedIn={isLogedIn}
+                        handleLogIn={handleLogIn}
+                        logOutUser={logOutUser}
                     />} 
                 />
                 <Route path="/shop" element={
@@ -101,7 +125,13 @@ function App() {
                         filteredProducts={filteredProducts}
                         addToCart={addToCart}
                         cartArray={cartArray}
-                        clerkPubKey={clerkPubKey}
+                        removeFromCart={removeFromCart}
+                        setCartArray={setCartArray}
+                        user={user}
+                        updateUser={updateUser}
+                        isLogedIn={isLogedIn}
+                        handleLogIn={handleLogIn}
+                        logOutUser={logOutUser}
                     />} 
                 />
                 <Route path="/products/:productId" element={
@@ -114,22 +144,94 @@ function App() {
                         clearSearchInput={clearSearchInput}
                         addToCart={addToCart}
                         cartArray={cartArray}
+                        removeFromCart={removeFromCart}
+                        setCartArray={setCartArray}
+                        user={user}
+                        updateUser={updateUser}
+                        isLogedIn={isLogedIn}
+                        handleLogIn={handleLogIn}
+                        logOutUser={logOutUser}
                     />} />
-                <Route path="/cart" element={
-                    <Cartpage
+                <Route path="/favorites" element={
+                    <Favorites
                         searchInput={searchInput}
                         isSearchOpen={isSearchOpen}
                         toggleSearch={toggleSearch}
                         handleSearchInput={handleSearchInput}
                         handleParfumeClick={handleParfumeClick}
                         clearSearchInput={clearSearchInput}
+                        addToCart={addToCart}
                         cartArray={cartArray}
-                        setCartArray={setCartArray}
                         removeFromCart={removeFromCart}
+                        setCartArray={setCartArray}
+                        user={user}
+                        updateUser={updateUser}
+                        isLogedIn={isLogedIn}
+                        handleLogIn={handleLogIn}
+                        logOutUser={logOutUser}
                     />} />
+                <Route path="/historyachats" element={
+                    <Historyachats
+                        searchInput={searchInput}
+                        isSearchOpen={isSearchOpen}
+                        toggleSearch={toggleSearch}
+                        handleSearchInput={handleSearchInput}
+                        handleParfumeClick={handleParfumeClick}
+                        clearSearchInput={clearSearchInput}
+                        addToCart={addToCart}
+                        cartArray={cartArray}
+                        removeFromCart={removeFromCart}
+                        setCartArray={setCartArray}
+                        user={user}
+                        updateUser={updateUser}
+                        isLogedIn={isLogedIn}
+                        handleLogIn={handleLogIn}
+                        logOutUser={logOutUser}
+                    />} />    
+                <Route path="/faq" element={
+                    <FAQpage
+                        searchInput={searchInput}
+                        isSearchOpen={isSearchOpen}
+                        toggleSearch={toggleSearch}
+                        handleSearchInput={handleSearchInput}
+                        handleParfumeClick={handleParfumeClick}
+                        clearSearchInput={clearSearchInput}
+                        addToCart={addToCart}
+                        cartArray={cartArray}
+                        removeFromCart={removeFromCart}
+                        setCartArray={setCartArray}
+                        user={user}
+                        updateUser={updateUser}
+                        isLogedIn={isLogedIn}
+                        handleLogIn={handleLogIn}
+                        logOutUser={logOutUser}
+                    />} />
+                <Route path="/aboutus" element={
+                    <Aboutuspage
+                        searchInput={searchInput}
+                        isSearchOpen={isSearchOpen}
+                        toggleSearch={toggleSearch}
+                        handleSearchInput={handleSearchInput}
+                        handleParfumeClick={handleParfumeClick}
+                        clearSearchInput={clearSearchInput}
+                        addToCart={addToCart}
+                        cartArray={cartArray}
+                        removeFromCart={removeFromCart}
+                        setCartArray={setCartArray}
+                        user={user}
+                        updateUser={updateUser}
+                        isLogedIn={isLogedIn}
+                        handleLogIn={handleLogIn}
+                        logOutUser={logOutUser}
+                    />} /> 
+                <Route path="/reset-password/:token" element={
+                    <Passwordpage/>
+                } />
+                <Route path="/activated" element={
+                    <Activatedpage/>
+                } />                      
             </Routes>
         </Router>
-        </ClerkProvider>
     );
 }
 export default App;

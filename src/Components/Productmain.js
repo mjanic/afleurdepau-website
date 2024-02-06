@@ -52,7 +52,7 @@ function Productmain({key, name, parfume, price, img1, img2, img3, description, 
                     </p>
                 </div>
                 <div className='product-buttons'>
-                    <button className='button strong-button' onClick={handleAddToCart}>Ajouter au panier</button>
+                    <button className='button strong-button' onClick={handleAddToCart}>AJOUTER AU PANIER</button>
                 </div>
             </div>
         </div>

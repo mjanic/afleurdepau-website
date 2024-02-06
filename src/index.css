@@ -17,3 +17,19 @@ h2 {
 h3 {
   font-family: 'Amiko';
 }
+.about-us-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 40px;
+}
+.about-us-container ol li{
+  display: block;
+  color: inherit;
+  margin: 5px;
+  list-style-type: square;
+}
+.about-us-container img {
+  max-width: 90%;
+  height: auto;
+  margin: 20px;
+}

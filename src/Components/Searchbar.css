@@ -1,5 +1,7 @@
 .nav-searchbar {
     position: relative;
+    justify-content: right;
+    padding-right: 30px;
 }
 .search-bar {
     display: flex;
@@ -17,7 +19,7 @@
     display: none;
     position: absolute;
     top: 150%;
-    left: -100%;
+    left: -300%;
     background-color: #FCF6EE;
     border: 1px solid #685b47;
 }
@@ -25,7 +27,7 @@
     display: block;
     position: absolute;
     top: 150%;
-    left: -100%;
+    left: -400%;
     background-color: #FCF6EE;
     border: 1px solid #685b47;
 }

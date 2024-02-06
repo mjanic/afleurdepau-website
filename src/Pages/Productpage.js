@@ -8,7 +8,8 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 
 function Productpage({ searchInput, isSearchOpen, toggleSearch, addToCart, cartArray, 
-     handleSearchInput, handleParfumeClick, clearSearchInput}) {
+     handleSearchInput, handleParfumeClick, clearSearchInput, removeFromCart, setCartArray,
+    user, updateUser, isLogedIn, handleLogIn, logOutUser}) {
     
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -27,6 +28,13 @@ function Productpage({ searchInput, isSearchOpen, toggleSearch, addToCart, cartA
                 handleSearchInput={handleSearchInput}
                 clearSearchInput={clearSearchInput}
                 cartArray={cartArray}
+                removeFromCart={removeFromCart}
+                setCartArray={setCartArray}
+                user={user}
+                updateUser={updateUser}
+                isLogedIn={isLogedIn}
+                handleLogIn={handleLogIn}
+                logOutUser={logOutUser}
             />
             <Productmain 
                 key={productKey}
@@ -49,6 +57,8 @@ function Productpage({ searchInput, isSearchOpen, toggleSearch, addToCart, cartA
             startIndex={parseInt(productId, 10)} 
             products={products} 
             addToCart={addToCart}
+            user={user}
+            updateUser={updateUser}
             />
             <Footer/>
         </div>

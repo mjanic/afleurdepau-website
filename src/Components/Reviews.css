@@ -1,0 +1,26 @@
+.review {
+    width: 30%;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10%;
+    min-height: 250px;
+}
+.review h3 {
+    margin: 0.5rem;
+}
+@media screen and (max-width: 820px) {
+    .review p {
+        font-size: 10px;
+    }
+    .review {
+        min-height: auto;
+    }
+    
+}
+@media screen and (max-width: 540px) {
+    .review {
+        width: auto;
+        max-width: 250px;
+        min-height: auto;
+    }
+}

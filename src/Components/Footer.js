@@ -5,47 +5,50 @@ import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { faTiktok } from '@fortawesome/free-brands-svg-icons';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 function Footer() {
+
+    const alertTikTok = () => {
+        alert("Tik Tok under construction");
+    } 
+
+    const goTop = () => {
+        setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 100);
+        
+    }
+
     return(
         <div className='f'>
-        <div className='footer'>
-            <div className='footer-about-us'>
-                <p>
-                Nous sommes une équipe de passionnés dont le but est d'améliorer 
-                la vie de chacun grâce à des produits disruptifs. Nous fabriquons 
-                d'excellents produits pour résoudre vos problèmes commerciaux. Nos 
-                produits sont conçus pour les petites et moyennes entreprises désireuses 
-                d'optimiser leurs performances. 
-                </p>
-                <h3>Apprenez plus <FontAwesomeIcon className='footer-icon' icon={faArrowRight}/></h3>           
-            </div>
-            <div className='footer-links'>
+        <div className='footer'>   
+            <div className='flex'><Link to="/" onClick={goTop}><img src='../assets1/image-logo1.jpg' width={140} alt="logo" /></Link> </div>       
+            <div className='footer-links flex'>
                 <ul>
-                    <li>Home</li>
-                    <li>Shop</li>
-                    <li className='aboutus-link'>About us</li>
-                    <li>FAQ</li>
+                    <li><Link to="/" onClick={goTop}>Home</Link></li>
+                    <li><Link to="/shop" onClick={goTop}>Shop</Link></li>
+                    <li><Link to="/aboutus" onClick={goTop}>About us</Link></li>
+                    <li><Link to="/faq" onClick={goTop}>FAQ</Link></li>
                     <li>Mentions legales</li>
                 </ul>
             </div>
-            <div className='footer-contact'>
+            <div className='footer-contact flex'>
                 <ul>
-                    <li>Rue Richard Lenoir 24</li>
-                    <li>14000, Caen</li>
+                    <li>{process.env.REACT_APP_ADRESS_1}</li>
+                    <li>{process.env.REACT_APP_ADRESS_2}</li>
                     <li>
                         <FontAwesomeIcon className='footer-icon' icon={faEnvelope} />
-                        afleurdepau.perso@gmail.com
+                        {process.env.REACT_APP_EMAIL}
                     </li>
                     <li>
                         <FontAwesomeIcon className='footer-icon' icon={faPhone}/>
-                        069262672
+                        {process.env.REACT_APP_TELEPHONE}
                     </li>
                     <li className='social-icons'>
                         <FontAwesomeIcon className='footer-icon' icon={faInstagram} size='xl'/>
                         <FontAwesomeIcon className='footer-icon' icon={faFacebook} size='xl'/>
-                        <FontAwesomeIcon className='footer-icon' icon={faTiktok} size='xl'/>
+                        <FontAwesomeIcon onClick={alertTikTok} className='footer-icon' icon={faTiktok} size='xl'/>
                     </li>
                 </ul>
             </div>

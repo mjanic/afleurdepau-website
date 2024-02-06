@@ -1,22 +1,16 @@
 import './Cart.css';
-import './Cartitem';
 import Cartitem from './Cartitem';
 
-function Cart({cartArray, setCartArray,  removeFromCart}) {
-    let grandTotal = cartArray.map(item => (parseInt(item.price)*item.quantity));
-    let grandTotalPrice = grandTotal.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+function Cart({cartArray, setCartArray, removeFromCart}) {
+    let livraison = 4.9;
+    let articlesPrice = cartArray.map(item => parseInt(item.price));
+    let totalPrice = articlesPrice.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    let cachOut = livraison + totalPrice;
     return(
         <div>
             {cartArray.length > 0 ? (
             <div className="cart">
-                <div className="cart-items">
-                    <div className='cart-itemtext'>
-                        <div></div>
-                        <div>item</div>
-                        <div>price</div>
-                        <div>qte</div>
-                        <div>total</div>
-                    </div>
+                <div className="cart-items">                 
                     {cartArray.map(item => (
                         <Cartitem
                             key={item.id}
@@ -31,13 +25,13 @@ function Cart({cartArray, setCartArray,  removeFromCart}) {
                         />
                     ))}
                 </div>
-                <div className="cart-total">
-                    <div className="total-cashout">
-                        <h1>Grand total:</h1>
-                        <h2>{grandTotalPrice}.00 $</h2>
-                        <button className='button'>Checkout</button>
-                    </div>
+                <div className="total-cashout">
+                    <span className='space-between'><h2>Articles:</h2> <h2>{totalPrice.toFixed(2)} €</h2></span>
+                    <span className='space-between'><h2>Livraison:</h2> <h2>{livraison.toFixed(2)} €</h2></span>
+                    <span className='space-between'><h2>Total:</h2> <h2>{cachOut.toFixed(2)} €</h2></span>
+                    
                 </div>
+                <button className='button btn-cart'>Checkout</button>
             </div>
             ) : null}
         </div>    

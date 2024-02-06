@@ -24,7 +24,7 @@
     .video-section {
         display: flex;
         flex-direction: column;
-        padding: 40px 0;
+        padding: 0;
         text-align: center;
     }
     .video-section .button {

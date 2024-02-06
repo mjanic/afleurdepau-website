@@ -1,7 +1,7 @@
 import Product from './Product';
 import { useEffect } from 'react';
 
-function Threeproducts({startIndex, products, addToCart}) {
+function Threeproducts({startIndex, products, addToCart, user, updateUser}) {
 
     useEffect(() => {
         window.scrollTo(0,0);
@@ -27,6 +27,8 @@ function Threeproducts({startIndex, products, addToCart}) {
                         price={product.price}
                         img1= {`../${product.img1}`}
                         addToCart={addToCart}
+                        user={user}
+                        updateUser={updateUser}
                     />
                 
       ))}

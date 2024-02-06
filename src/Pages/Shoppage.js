@@ -5,15 +5,23 @@ import Pinksection from "../Components/Pinksection";
 import Productgrid from "../Components/Productgrid";
 //import products from '../Components/products.json';
 import { useEffect} from "react";
+import { useNavigate } from "react-router-dom";
 
-function Shoppage({ searchInput, isSearchOpen, toggleSearch, cartArray, clerkPubKey, 
-    handleSearchInput, filteredProducts, clearSearchInput, addToCart }) {
+function Shoppage({ searchInput, isSearchOpen, toggleSearch, cartArray, 
+    handleSearchInput, filteredProducts, clearSearchInput, addToCart, removeFromCart,
+    setCartArray, user, updateUser, isLogedIn, handleLogIn, logOutUser}) {
 
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
 
-    
+    const navigate = useNavigate();
+    function goParfumes () {
+        navigate('/');
+        setTimeout(() => {
+            window.scrollTo({ top: 1050, behavior: 'smooth' });
+          }, 100);
+    }
     
     return(
         <div>
@@ -24,6 +32,13 @@ function Shoppage({ searchInput, isSearchOpen, toggleSearch, cartArray, clerkPub
                 handleSearchInput={handleSearchInput}
                 clearSearchInput={clearSearchInput}
                 cartArray={cartArray}
+                removeFromCart={removeFromCart}
+                setCartArray={setCartArray}
+                user={user}
+                updateUser={updateUser}
+                isLogedIn={isLogedIn}
+                handleLogIn={handleLogIn}
+                logOutUser={logOutUser}
             />
             <Headerimage/>
             <Pinksection 
@@ -33,8 +48,16 @@ function Shoppage({ searchInput, isSearchOpen, toggleSearch, cartArray, clerkPub
             <Productgrid 
                 products={filteredProducts}
                 addToCart={addToCart}
-                clerkPubKey={clerkPubKey}
+                user={user}
+                updateUser={updateUser}
             />
+            {filteredProducts.length === 0 ? 
+                <div className="no-search">
+                    <p>There are no products matching</p>
+                    <button onClick={goParfumes}>View parfumes</button>
+                </div>
+            : null
+            }
             <Footer/>
         </div>
     )
